@@ -16,7 +16,3 @@
 
 - name: Loading the schema for the {{component}} application to mongodb.
   ansible.builtin.shell: mongo --ssl --host "{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.endpoint', region='us-east-1') }}":27017 --sslCAFile /app/rds-combined-ca-bundle.pem --username "{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.master_username', region='us-east-1') }}" --password "{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.master_password', region='us-east-1') }}" </app/schema/{{component}}.js
-
-
-#- name: Loading the schema for the {{component}} application to mongodb.
-#  ansible.builtin.shell: mongo --host mongodb-dev.learntechnology.cloud </app/schema/{{component}}.js
