@@ -2,9 +2,9 @@
 Description = User Service
 [Service]
 User=roboshop
-Environment=MONGO=true
+Environment=DOCUMENTDB=true
 Environment=REDIS_HOST=redis-dev.learntechnology.cloud
-Environment=MONGO_URL="mongodb://mongodb-dev.learntechnology.cloud:27017/users"
+Environment=MONGO_URL="mongodb://{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.master_username', region='us-east-1') }}:{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.master_password', region='us-east-1') }}@{{ lookup('amazon.aws.aws_ssm', 'docdb.{{env}}.endpoint', region='us-east-1') }}:27017/users?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=user
 
