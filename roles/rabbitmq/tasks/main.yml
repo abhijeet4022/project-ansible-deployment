@@ -21,8 +21,8 @@
 
 - name: Adding roboshop user and setting permissions for 'roboshop' user in RabbitMQ.
   community.rabbitmq.rabbitmq_user:
-    user: roboshop
-    password: roboshop123
+    user: {{ lookup('amazon.aws.aws_ssm', 'payment.{{env}}.AMQP_USER', region='us-east-1') }}
+    password: {{ lookup('amazon.aws.aws_ssm', 'payment.{{env}}.AMQP_PASS', region='us-east-1') }}
     vhost: /
     configure_priv: .*
     read_priv: .*
