@@ -1,0 +1,17 @@
+- name: Importing Pre_Requisite Tasks.
+  ansible.builtin.import_tasks: pre_requisite.yml
+
+- name: Install Prometheus.
+  ansible.builtin.shell: labauto prometheus-server
+
+- name: Setup Configuration File - prometheus.yml
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
+
+- name: Restart the prometheus service.
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+    enabled: true
+    daemon-reload: true
