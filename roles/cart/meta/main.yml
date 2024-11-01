@@ -1,0 +1,3 @@
+# meta main.yml will help as a prerequisite for the playbook or tasks. This task will run as a dependency on a node.
+dependencies:
+  - role: common
