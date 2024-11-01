@@ -4,7 +4,7 @@
     name: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
     state: latest
     disable_gpg_check: true
-  when: agent == true
+  when: agent is defined
 
 - name: Reload the amazon-ssm-agent service.
   ansible.builtin.systemd:
@@ -12,7 +12,7 @@
     state: restarted
     enabled: yes
     daemon_reload: true
-  when: agent == true
+  when: agent is defined
 
 # Setup Prometheus Node Exporter
 - name: Install Prometheus Node Exporter
