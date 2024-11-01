@@ -23,4 +23,4 @@
     state: restarted
     enabled: yes
     daemon_reload: true
-  when: agent == true
+  when: agent is defined
