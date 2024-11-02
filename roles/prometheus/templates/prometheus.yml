@@ -25,4 +25,4 @@ scrape_configs:
         port: 9100
         filters:
           - name: "tag:Monitor"
-            value: [ "yes" ]
+            value: ["yes"]
