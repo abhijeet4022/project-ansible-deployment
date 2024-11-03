@@ -34,3 +34,26 @@
     state: restarted
     enabled: true
     daemon_reload: true
+
+- name: Creating Nginx Node Exporter Directory.
+  ansible.builtin.file:
+    path: /opt/nginx_exporter
+    state: directory
+
+- name: Downloading the Nginx Node Exporter.
+  ansible.builtin.unarchive:
+    src: https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v1.3.0/nginx-prometheus-exporter_1.3.0_linux_amd64.tar.gz
+    dest: /opt/nginx_exporter
+    remote_src: yes
+
+- name: Configuring Nginx Node Exporter Service File.
+  ansible.builtin.copy:
+    src: nginx_exporter.service
+    dest: /etc/systemd/system/nginx_exporter.service
+
+- name: Restarting and enabling the Nginx Node Exporter.
+  ansible.builtin.systemd_service:
+    name: nginx_exporter
+    state: restarted
+    enabled: true
+    daemon_reload: true
