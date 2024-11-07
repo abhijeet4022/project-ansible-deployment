@@ -10,19 +10,21 @@
 
 - name: Install Elasticsearch and Kibana using shell to capture output
   ansible.builtin.shell: |
-    yum install -y elasticsearch kibana
+    yum install -y elasticsearch &>> /tmp/output
   register: install_output
-  ignore_errors: yes  # Capture output even if there's an error
+#  ignore_errors: yes  # Capture output even if there's an error
 
-- name: Write installation output to file
-  ansible.builtin.copy:
-    content: "{{ install_output.stdout }}"
-    dest: "/tmp/output"
-    append: yes
+#- name: Write installation output to file
+#  ansible.builtin.copy:
+#    content: "{{ install_output.stdout }}"
+#    dest: "/tmp/output"
+#    append: yes
 
-- name: Install Nginx
+- name: Install Kibana and Nginx
   ansible.builtin.yum:
-    name: nginx
+    name:
+      - nginx
+      - kibana
     state: present
 
 - name: Configure Reverse Proxy for Kibana
