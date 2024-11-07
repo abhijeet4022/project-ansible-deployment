@@ -8,16 +8,9 @@
     state: present
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
-- name: Install Elasticsearch and Kibana using shell to capture output
+- name: Install Elasticsearch.
   ansible.builtin.shell: |
     yum install -y elasticsearch &>> /tmp/output
-#  ignore_errors: yes  # Capture output even if there's an error
-
-#- name: Write installation output to file
-#  ansible.builtin.copy:
-#    content: "{{ install_output.stdout }}"
-#    dest: "/tmp/output"
-#    append: yes
 
 - name: Install Kibana and Nginx
   ansible.builtin.yum:
