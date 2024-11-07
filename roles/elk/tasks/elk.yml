@@ -1,3 +1,8 @@
+- name: Configure ELK Repository
+  ansible.builtin.copy:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/
+
 - name: Import the Elastic GPG key
   ansible.builtin.rpm_key:
     state: present
