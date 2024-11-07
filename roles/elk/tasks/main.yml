@@ -2,5 +2,17 @@
   ansible.builtin.hostname:
     name: "{{component}}"
 
+- name: Install Python3.12 pip
+  ansible.builtin.yum:
+    name: python3.12-pip
+    state: present
+
+- name: Install botocore and boto3 using pip3.12
+  ansible.builtin.pip:
+    name:
+      - botocore
+      - boto3
+    executable: pip3
+
 - name: Configure Elasticsearch
   ansible.builtin.import_tasks: logstash.yml
