@@ -4,13 +4,17 @@
     dest: /etc/yum.repos.d/
 
 - name: Import the Elastic GPG key
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+  ansible.builtin.shell: rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 - name: Install Elasticsearch.
-  ansible.builtin.shell: |
-    yum install -y elasticsearch &>> /tmp/output
+  ansible.builtin.shell: yum install -y elasticsearch &>> /tmp/output
+
+- name: Enabling and restarting the service.
+  ansible.builtin.systemd_service:
+    name: elasticsearch
+    state: start
+    enabled: true
+    daemon_reload: true
 
 - name: Install Kibana and Nginx
   ansible.builtin.yum:
@@ -33,5 +37,4 @@
     daemon_reload: true
   loop:
     - kibana
-    - elasticsearch
     - nginx
