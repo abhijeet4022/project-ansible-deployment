@@ -1,0 +1,6 @@
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{component}}"
+
+- name: Configure Elasticsearch
+  ansible.builtin.import_tasks: logstash.yml
