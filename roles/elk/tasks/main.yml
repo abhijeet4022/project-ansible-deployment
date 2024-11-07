@@ -15,4 +15,4 @@
     executable: pip3
 
 - name: Configure Elasticsearch
-  ansible.builtin.import_tasks: logstash.yml
+  ansible.builtin.import_tasks: elk.yml
