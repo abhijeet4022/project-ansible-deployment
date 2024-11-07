@@ -21,8 +21,8 @@
 
 - name: Configure Reverse Proxy for Kibana
   ansible.builtin.template:
-    src: kibana_proxy.conf
-    dest: "/etc/nginx/conf.d"
+    src: nginx.conf
+    dest: "/etc/nginx/nginx.conf"
 
 - name: Enabling and restarting the service.
   ansible.builtin.systemd_service:
