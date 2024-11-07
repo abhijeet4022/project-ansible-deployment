@@ -17,3 +17,8 @@
 # Setup Prometheus Node Exporter
 - name: Install Prometheus Node Exporter
   ansible.builtin.shell: labauto prometheus-node-exporter
+
+- name: Install Bash Completion
+  ansible.builtin.yum:
+    name: bash-completion
+    state: present
