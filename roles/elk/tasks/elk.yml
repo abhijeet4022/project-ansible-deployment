@@ -17,6 +17,7 @@
     name:
       - nginx
       - kibana
+      - bash-completion
     state: present
 
 - name: Configure Reverse Proxy for Kibana
