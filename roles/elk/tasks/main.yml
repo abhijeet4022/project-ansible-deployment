@@ -16,3 +16,4 @@
 
 - name: Configure Elasticsearch
   ansible.builtin.import_tasks: elk.yml
+  when: elk_component == "elk"
