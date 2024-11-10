@@ -8,11 +8,7 @@
     state: present
 
 - name: Install botocore and boto3 using pip3.12
-  ansible.builtin.pip:
-    name:
-      - botocore
-      - boto3
-    executable: pip3.12
+  ansible.builtin.shell: pip3.12 install  botocore boto3
 
 - name: Configure Elasticsearch
   ansible.builtin.import_tasks: elk.yml
