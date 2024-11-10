@@ -23,6 +23,11 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
+- name: Nginx Configuration File
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 - name: Configuring reverse proxy settings.
   ansible.builtin.copy:
     src: 1-reverse-proxy.conf
