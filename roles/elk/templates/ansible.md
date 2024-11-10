@@ -1,0 +1,1 @@
+`ansible-pull -i localhost, -U https://github.com/abhijeet4022/project-ansible-deployment.git main.yml -e component=elk -e elk_component=logstash`
