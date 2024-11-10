@@ -1,4 +1,4 @@
 component: user
 schema_type: mongodb
-log_type: jason
+log_type: json
 log_file: /var/log/user.log
