@@ -1,0 +1,32 @@
+# ============================== Filebeat inputs ===============================
+filebeat.inputs:
+  - type: filestream
+    id: {{ component }}
+    enabled: true
+    paths:
+      - {{ log_file }}
+    fields:
+      component: {{component}}
+      log_type: {{log_type}}
+
+# ============================== Filebeat modules ==============================
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+# ======================= Elasticsearch template setting =======================
+setup.template.settings:
+  index.number_of_shards: 1
+
+# =================================== Kibana ===================================
+setup.kibana:
+
+# ================================== Outputs ===================================
+output.logstash:
+  hosts: ["172.31.79.164:5044"]
+
+# ================================= Processors =================================
+processors:
+  - drop_fields:
+      fields: ["agent.ephemeral_id", "agent.id", "agent.name", "agent.type", "agent.version", "input.type"]
+      ignore_missing: false

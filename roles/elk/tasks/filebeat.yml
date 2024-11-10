@@ -1,0 +1,20 @@
+- name: Configure ELK Repository.
+  ansible.builtin.template:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/
+
+- name: Install Filebeat.
+  ansible.builtin.yum:
+    name: filebeat
+    state: present
+
+- name: Configure Filebeat.
+  ansible.builtin.template:
+    src: filebeat.yml
+    dest: "/etc/filebeat/filebeat.yml"
+
+- name: Enabling and restarting the service.
+  ansible.builtin.systemd_service:
+    name: filebeat
+    state: restarted
+    enabled: true

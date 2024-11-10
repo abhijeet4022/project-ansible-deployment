@@ -1,2 +1,4 @@
 component: shipping
 schema_type: mysql
+log_type: raw
+log_file: /var/log/shipping.log

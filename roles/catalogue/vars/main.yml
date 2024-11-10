@@ -1,2 +1,4 @@
 component: catalogue
 schema_type: mongodb
+log_type: jason
+log_file: /var/log/catalogue.log

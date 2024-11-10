@@ -57,3 +57,8 @@
     state: restarted
     enabled: true
     daemon_reload: true
+
+- name: Setup Filebeat.
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat.yml
