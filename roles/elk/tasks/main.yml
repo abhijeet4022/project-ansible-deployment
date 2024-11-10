@@ -17,3 +17,7 @@
 - name: Configure Elasticsearch
   ansible.builtin.import_tasks: elk.yml
   when: elk_component == "elk"
+
+- name: Configure Logstash
+  ansible.builtin.import_tasks: logstash.yml
+  when: elk_component == "logstash"

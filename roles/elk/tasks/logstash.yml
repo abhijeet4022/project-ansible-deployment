@@ -1,0 +1,15 @@
+- name: Install Logstash.
+  ansible.builtin.yum:
+    name: logstash
+    state: present
+
+- name: Configure Logstash
+  ansible.builtin.template:
+    src: logstash.conf
+    dest: "/etc/logstash/conf.d/logstash.conf"
+
+- name: Enabling and restarting the service.
+  ansible.builtin.systemd_service:
+    name: logstash
+    state: restarted
+    enabled: true
