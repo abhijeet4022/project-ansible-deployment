@@ -30,7 +30,7 @@
     dest: "/etc/nginx/nginx.conf"
 
 - name: Enabling and restarting the service.
-  ansible.builtin.systemd_service:
+  ansible.builtin.systemd:
     name: "{{ item }}"
     state: restarted
     enabled: true
