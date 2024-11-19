@@ -21,12 +21,12 @@
 
 - name: Downloading the {{component}} web layer code from Nexus.
   ansible.builtin.unarchive:
-    src: http://{{user}}:{{pass}}@172.31.66.144:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
+    src: http://{{username}}:{{password}}@172.31.66.144:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
     dest: /app
     remote_src: yes
   vars:
-    user: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1 }}"
-    pass: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1 }}"
+    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1 }}"
+    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1 }}"
     appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1 }}"
 
 
