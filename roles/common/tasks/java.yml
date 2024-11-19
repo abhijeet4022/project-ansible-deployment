@@ -6,6 +6,7 @@
 - name: Import task from app-prerequisites.yml
   ansible.builtin.import_tasks: app-prerequisites.yml
 
+# While using ci cd in server side no need to do build.
 #- name: Building the application using Maven.
 #  ansible.builtin.shell: mvn clean package ; mv /app/target/{{component}}-1.0.jar /app/{{component}}.jar
 #  args:
