@@ -29,9 +29,11 @@
     dest: /usr/share/nginx/html
     remote_src: yes
   vars:
-    user: "{{ lookup('amazon.aws.aws_ssm', 'nexux.{{env}}.username', region='us-east-1 }}"
-    pass: "{{ lookup('amazon.aws.aws_ssm', 'nexux.{{env}}.password', region='us-east-1 }}"
-    appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}-{{env}}-appVersion', region='us-east-1 }}"
+    user: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1 }}"
+    pass: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1 }}"
+    appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1 }}"
+
+
 
 - name: Nginx Configuration File
   ansible.builtin.copy:
