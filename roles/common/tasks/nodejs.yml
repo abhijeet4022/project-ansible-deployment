@@ -12,10 +12,10 @@
 - name: Import task from app-prerequisites.yml
   ansible.builtin.import_tasks: app-prerequisites.yml
 
-- name: Downloading application dependencies from package.json.
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
+#- name: Downloading application dependencies from package.json.
+#  ansible.builtin.shell: npm install
+#  args:
+#    chdir: /app
 
 - name: Import task from schema_setup.yml
   ansible.builtin.import_tasks: schema_setup.yml
