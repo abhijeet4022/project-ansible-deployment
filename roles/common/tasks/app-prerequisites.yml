@@ -19,7 +19,7 @@
 #    dest: /app
 #    remote_src: yes
 
-- name: Downloading the {{component}} web layer code from Nexus.
+- name: Downloading the {{component}} application code from Nexus.
   ansible.builtin.unarchive:
     src: http://{{username}}:{{password}}@172.31.66.144:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
     dest: /app
