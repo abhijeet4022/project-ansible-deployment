@@ -1,13 +1,21 @@
+- name: Check NodeJS installed or not
+  ansible.builtin.shell: type npm
+  register: command_status
+  ignore_errors: true
+
 - name: Disable current nodejs module.
   ansible.builtin.shell: dnf module disable nodejs -y
+  when: command_status.rc != 0
 
 - name: Enabling the Node.js 18 module.
   ansible.builtin.shell: dnf module enable nodejs:18 -y
+  when: command_status.rc != 0
 
 - name: Installing Node.js.
   ansible.builtin.dnf:
     name: nodejs
     state: present
+  when: command_status.rc != 0
 
 - name: Import task from app-prerequisites.yml
   ansible.builtin.import_tasks: app-prerequisites.yml
