@@ -1,6 +1,5 @@
 - name: Application Setup
   hosts: all
   become: true
-  serial: 1
   roles:
     - "{{ component }}"
