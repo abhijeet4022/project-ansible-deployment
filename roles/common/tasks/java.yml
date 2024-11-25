@@ -16,14 +16,9 @@
 #  args:
 #    chdir: /app
 
-- name: Check Schema is loaded or not.
-  ansible.builtin.shell: echo 'show databases' | mysql -h {{ lookup('amazon.aws.aws_ssm', 'shipping.{{env}}.DB_HOST', region='us-east-1') }} -u{{ lookup('amazon.aws.aws_ssm', 'rds.{{env}}.master_username', region='us-east-1') }} -p{{ lookup('amazon.aws.aws_ssm', 'rds.{{env}}.master_password', region='us-east-1') }} | grep -i {{DBNAME}}
-  ignore_errors: yes
-  register: schema_check
-
 - name: Import task from mysql_schema_setup.yml
   ansible.builtin.import_tasks: mysql_schema_setup.yml
-  when: schema_type is defined and schema_check.rc != 0
+  when: schema_type is defined
 
 - name: Import task from systemd_setup.yml
   ansible.builtin.import_tasks: systemd_setup.yml
